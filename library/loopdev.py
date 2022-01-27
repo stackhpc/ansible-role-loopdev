@@ -26,7 +26,7 @@ options:
         type: str
     fstype:
         description:
-            - Filesystem type
+            - Filesystem type. Use '' to not create a filesystem.
         type: str
         required: false
         default: ext4
@@ -74,7 +74,7 @@ def run_module():
     # Check for filesystem:
     _, lsblk, _ = module.run_command("lsblk -f %s" % loop_dev)
     fsinfo = lsblk.split('\n')[1].split() # e.g. either ['loop0'] or ['loop0', 'ext4', <label>, <uuid>]
-    if fstype not in fsinfo:
+    if fstype not in fsinfo and fstype != '':
         # Make filesystem:
         _, mkfs, _ = module.run_command("mkfs -t %s %s" % (fstype, loop_dev))
     module.exit_json(**result)

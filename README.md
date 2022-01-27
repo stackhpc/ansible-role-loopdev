@@ -13,7 +13,7 @@ Role Variables
 
 - `loopdev_path`: Required. Path to file backing loop device. Created if it doesn't exist.
 - `loopdev_size`: Required if `loopdev_path` doesn't exist. Size of backing file specified as for SIZE option of `truncate` command, e.g. "15GB".
-- `loopdev_fstype`: Optional. Filesystem type (default: `ext4`)
+- `loopdev_fstype`: Optional. Filesystem type (default: `ext4`). Use `''` to not create a filesystem.
 - `loopdev_mountpoint`: Optional. Define a path to mount loop device. Will be created if it doesn't exist. Default is not to mount it.
 - `loopdev_mountstate`: Optional, same as `ansible.posix.mount:state`. Default `mounted`.
 
